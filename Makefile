@@ -30,4 +30,11 @@ mrproper:clean
 
 rebuild:mrproper all
 
+install:
+ifeq ($(USER),root)
+	@mv $(EXEC) /bin/
+else
+	@echo "You must be root"
+endif
+
 .PHONY: clean mrproper rebuild
