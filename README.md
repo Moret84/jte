@@ -16,7 +16,7 @@ Be aware that setting a front cover will remove all pictures that could be attac
 
 ### Installation
 
-To install just type
+To install just type:
 ```
 $ make 
 # make install
