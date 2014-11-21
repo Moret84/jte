@@ -15,10 +15,14 @@ Be aware that setting a front cover will remove all pictures that could be attac
 * openssl
 ### Installation
 
-To install just compile it :
+To install just type
 ```
-make
+$ make 
+# make install
 ```
+
+
+
 ### Usage
 
  jte  [-n <number>] [-t <title>] [-a <artist>] [-A <album>] [-y <year>] [-g <genre>] [-c <path/to/cover>] [-h] \<file(s)\>
