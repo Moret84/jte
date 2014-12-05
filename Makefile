@@ -1,7 +1,6 @@
 CXX=g++
-C=gcc
 CXXFLAGS= -std=c++11 -Wall -ggdb
-LDFLAGS= -ltag -lstdc++ -lssl -lcrypto
+LDFLAGS= -ltag -lstdc++
 
 SRCDIR=src
 INCDIR=src
@@ -13,11 +12,8 @@ EXEC=jte
 
 all: $(EXEC)
 
-$(EXEC): $(OBJ) $(OBJDIR)/base64.o
+$(EXEC): $(OBJ)
 		$(CXX) -o $@ $^ $(LDFLAGS)
-
-$(OBJDIR)/base64.o:$(SRCDIR)/base64.c $(SRCDIR)/base64.h
-	$(C) -o $@ -c $<
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp
 		$(CXX) -o $@ -c $^ $(CXXFLAGS)

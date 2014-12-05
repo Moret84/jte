@@ -33,10 +33,7 @@
 #include <taglib/flacpicture.h>
 #include <taglib/tlist.h>
 
-extern "C"
-{
-#include "base64.h"
-}
+#include "base64.hpp"
 
 class FLACFile : public AudioFile
 {
