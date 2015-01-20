@@ -12,7 +12,6 @@ Be aware that setting a front cover will remove all pictures that could be attac
 * gcc
 * taglib
 * tclap
-* openssl
 
 ### Installation
 
