@@ -21,8 +21,6 @@
 *
 */
 
-
-
 #include "JTE.hpp"
 #include <iostream>
 

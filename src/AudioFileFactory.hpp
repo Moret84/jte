@@ -21,8 +21,6 @@
 *
 */
 
-
-
 #include "FLACFile.hpp"
 #include "MP3File.hpp"
 

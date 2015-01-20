@@ -1,39 +1,39 @@
 /********************************************************************************************
 	Base64 encoding implementation based on openSSL
-	
-	Author: CARSON 
+
+	Author: CARSON
 	Date: 11.04.2006
 	URL: http://www.ioncannon.net/programming/34/howto-base64-encode-with-cc-and-openssl/
-	
+
 	-- EDIT --
 	Author: Martin Albrecht <martin.albrecht@javacoffee.de>
 	Date: 22.08.2009
 	URL: http://code.google.com/p/smtpmail
-	
+
 DEPENDENCIES:
 -------------
 	- openSSL-devel (http://www.deanlee.cn/programming/openssl-for-windows/)
-	
+
 DESCRIPTION:
 ------------
-	This is a simple base64 encoding implementation, 
+	This is a simple base64 encoding implementation,
 	based on the openSSL library.
 	I found this code on http://www.ioncannon.net
-	
+
 	To compile this code you need the openSSL development
 	libraries. In Windows I copied all the headers and lib
 	files into my Dev-Cpp folder and compiled the code with
 	the command:
-	
+
 		gcc base64.c -l libeay32
-	
+
 	In Linux/Unix it is:
-	
+
 		gcc base64.c -l ssl
-	
+
 	WINDOWS NOTE: After compiling, you need the libeay32.dll file in
 	the directory of your compiled binary!
-	
+
 ********************************************************************************************/
 #include <stdio.h>
 #include <stdlib.h>
@@ -64,7 +64,7 @@ char *b64_encode(char *string, int length)
   BIO_get_mem_ptr(b64, &bptr);
 
   buff = malloc(bptr->length);
-  
+
   #ifdef _WIN32
 	memset(buff,0,sizeof(char*));
 	memcpy(buff, bptr->data, bptr->length-1);
@@ -72,7 +72,7 @@ char *b64_encode(char *string, int length)
 	bzero(buff, sizeof(char*));
 	sprintf(buff, "%s", bptr->data);
   #endif
-  
+
   buff[bptr->length-1] = '\0';
   BIO_free_all(b64);
   return buff;
@@ -98,4 +98,3 @@ char *b64_decode(char *input, int length)
 	BIO_free_all(bmem);
 	return buffer;
 }
-

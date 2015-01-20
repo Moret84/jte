@@ -21,8 +21,6 @@
 *
 */
 
-
-
 #ifndef FLACFILE_HPP
 #define FLACFILE_HPP
 
@@ -40,10 +38,9 @@ extern "C"
 
 class FLACFile : public AudioFile
 {
-	private:
-		void cleanFrontCoverList();
 	public:
-		FLACFile(std::string path);
+		FLACFile(const std::string &path);
 		void setCover(const TagLib::String &path);
 };
+
 #endif
