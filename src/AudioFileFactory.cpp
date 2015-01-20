@@ -21,8 +21,6 @@
 *
 */
 
-
-
 #include "AudioFileFactory.hpp"
 
 using namespace std;
@@ -56,7 +54,7 @@ audioFileType AudioFileFactory::getFileType(const string &fileName)
 	else if(extension == "ogg")
 		return audioFileType::OGG;
 	else
-		throw string(fileName + "Unknown file type");
+		throw string(fileName + ": Unknown file type");
 }
 
 void AudioFileFactory::destroy(AudioFile* af)

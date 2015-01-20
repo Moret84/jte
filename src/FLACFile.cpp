@@ -21,14 +21,13 @@
 *
 */
 
-
-
 #include "FLACFile.hpp"
 
 using namespace std;
 
-FLACFile::FLACFile(string path) : AudioFile(path)
+FLACFile::FLACFile(const string &path)
 {
+	m_file = new TagLib::FLAC::File(path.c_str());
 }
 
 void FLACFile::setCover(const TagLib::String &path)
@@ -36,30 +35,28 @@ void FLACFile::setCover(const TagLib::String &path)
 	try
 	{
 		Cover c(path.toCString());
-		TagLib::FLAC::File currentFile(m_fr.file()->name());
-		TagLib::Ogg::XiphComment *t = currentFile.xiphComment(true);
+		TagLib::Ogg::XiphComment *t = dynamic_cast<TagLib::FLAC::File*>(m_file)->xiphComment(true);
 
 		//Remove all pictures
-		currentFile.removePictures();
+		dynamic_cast<TagLib::FLAC::File*>(m_file)->removePictures();
 
 		//Embedding picture into file
 		TagLib::FLAC::Picture* picture = new TagLib::FLAC::Picture;
 		picture->setData(c.data());
 		picture->setType((TagLib::FLAC::Picture::Type) 0x03); // Front Cover
 		picture->setMimeType(c.getMimeType());
-		picture->setDescription("FrontCover");
-		currentFile.addPicture(picture);
+		picture->setDescription("Front Cover");
+		dynamic_cast<TagLib::FLAC::File*>(m_file)->addPicture(picture);
 
 		//Linking
-		TagLib::List<TagLib::FLAC::Picture*> embeddedPicturesList = currentFile.pictureList();
+		TagLib::List<TagLib::FLAC::Picture*> embeddedPicturesList = dynamic_cast<TagLib::FLAC::File*>(m_file)->pictureList();
 		TagLib::List<TagLib::FLAC::Picture*>::Iterator it;
+
 		for(it = embeddedPicturesList.begin(); it != embeddedPicturesList.end(); ++it)
 		{
 			TagLib::ByteVector block = (*it)->render();
 			t->addField("METADATA_BLOCK_PICTURE", base64_encode((unsigned char*)block.data(), block.size()), true);
 		}
-
-		currentFile.save();
 	}
 	catch(string &s)
 	{

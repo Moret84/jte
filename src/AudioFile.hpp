@@ -21,13 +21,12 @@
 *
 */
 
-
-
 #ifndef AUDIOFILE_HPP
 #define AUDIOFILE_HPP
 
 #include <taglib/tag.h>
 #include <taglib/tstring.h>
+#include <taglib/fileref.h>
 #include "Cover.hpp"
 
 enum audioFileType
@@ -40,22 +39,21 @@ enum audioFileType
 class AudioFile
 {
 	protected:
-		TagLib::FileRef m_fr;
-		AudioFile(const std::string &path);
+		TagLib::File* m_file;
 
 	public:
 		virtual ~AudioFile();
-		inline TagLib::Tag* tag() { return m_fr.tag(); }
+		TagLib::Tag* tag();
 
-		inline void setGenre(const TagLib::String &s) { m_fr.tag()->setGenre(s); }
-		inline void setYear(const TagLib::String &s) { m_fr.tag()->setYear(s.toInt()); }
-		inline void setAlbum(const TagLib::String &s) { m_fr.tag()->setAlbum(s); }
-		inline void setArtist(const TagLib::String &s) { m_fr.tag()->setArtist(s); }
-		inline void setTitle(const TagLib::String &s) { m_fr.tag()->setTitle(s); }
-		inline void setTrack(const TagLib::String &s) { m_fr.tag()->setTrack(s.toInt()); }
-		inline void save() { m_fr.save(); }
+		virtual void setGenre(const TagLib::String &s);
+		virtual void setYear(const TagLib::String &s);
+		virtual void setAlbum(const TagLib::String &s);
+		virtual void setArtist(const TagLib::String &s);
+		virtual void setTitle(const TagLib::String &s);
+		virtual void setTrack(const TagLib::String &s);
+		virtual void save();
 
-		virtual void setCover(const TagLib::String &path) = 0;
+		virtual void setCover(const TagLib::String &s) = 0;
 };
 
 #endif

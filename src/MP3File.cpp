@@ -1,5 +1,4 @@
-/*
-*  Copyright (C) 2014 Aurélien Rivet
+/* *  Copyright (C) 2014 Aurélien Rivet
 *
 *
 *  This file is part of jdid tag editor.
@@ -21,14 +20,13 @@
 *
 */
 
-
-
 #include "MP3File.hpp"
 
 using namespace std;
 
-MP3File::MP3File(string path) : AudioFile(path)
+MP3File::MP3File(const string &path)
 {
+	m_file = new TagLib::MPEG::File(path.c_str());
 }
 
 void MP3File::setCover(const TagLib::String &path)
@@ -36,13 +34,13 @@ void MP3File::setCover(const TagLib::String &path)
 	try
 	{
 		Cover c(path.toCString());
-		TagLib::MPEG::File currentFile(m_fr.file()->name());
-		TagLib::ID3v2::Tag *t = currentFile.ID3v2Tag(true);
+		TagLib::ID3v2::Tag *t = dynamic_cast<TagLib::MPEG::File*>(m_file)->ID3v2Tag(true);
+
 		TagLib::ID3v2::AttachedPictureFrame *frame = new TagLib::ID3v2::AttachedPictureFrame;
 		frame->setMimeType(c.getMimeType());
 		frame->setPicture(c.data());
+
 		t->addFrame(frame);
-		currentFile.save();
 	}
 	catch(string &s)
 	{

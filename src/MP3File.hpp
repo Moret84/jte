@@ -21,8 +21,6 @@
 *
 */
 
-
-
 #ifndef MP3FILE_HPP
 #define MP3FILE_HPP
 
@@ -34,7 +32,8 @@
 class MP3File : public AudioFile
 {
 	public:
-		MP3File(std::string path);
+		MP3File(const std::string &path);
 		void setCover(const TagLib::String &path);
 };
+
 #endif

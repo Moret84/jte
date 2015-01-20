@@ -21,8 +21,6 @@
 *
 */
 
-
-
 #include "JTE.hpp"
 
 using namespace std;

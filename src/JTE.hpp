@@ -21,8 +21,6 @@
 *
 */
 
-
-
 #ifndef JTE_HPP
 #define JTE_HPP
 
