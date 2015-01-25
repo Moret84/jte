@@ -25,9 +25,24 @@
 
 using namespace std;
 
+AudioFile::AudioFile()
+{
+
+}
+
+AudioFile::~AudioFile()
+{
+	delete m_file;
+}
+
 TagLib::Tag* AudioFile::tag()
 {
 	return m_file->tag();
+}
+
+void set(availableTags, TagLib::String &s)
+{
+
 }
 
 void AudioFile::setGenre(const TagLib::String &s)
@@ -65,7 +80,3 @@ void AudioFile::save()
 	m_file->save();
 }
 
-AudioFile::~AudioFile()
-{
-	delete m_file;
-}
