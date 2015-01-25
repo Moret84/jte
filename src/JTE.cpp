@@ -52,6 +52,8 @@ void JTE::parseCL(int argc, char **argv)
 			title("t", "title", "Define the title tag", false, "", "title", cmd),
 			trackNumber("n", "tracknumber", "Define the tracknumber tag", false, "", "number", cmd);
 
+		TCLAP::SwitchArg("p", "print", "print tag(s) instead of write them", cmd);
+
 		TCLAP::UnlabeledMultiArg<string> files("files", "The tag edition audio file(s) target(s)", true, "file(s)");
 		cmd.add(files);
 
@@ -96,7 +98,7 @@ void JTE::parseCL(int argc, char **argv)
 	}
 }
 
-void JTE::tagFiles()
+void JTE::writeTags()
 {
 	forward_list<AudioFile*>::iterator it;
 	for(it = m_fileList.begin(); it != m_fileList.end(); ++it)
@@ -125,5 +127,5 @@ void JTE::tagFiles()
 
 void JTE::run()
 {
-	tagFiles();
+	writeTags();
 }

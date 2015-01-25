@@ -40,9 +40,11 @@ class JTE
 	private:
 		std::forward_list<AudioFile*> m_fileList;
 		std::map<std::string, TagLib::String> m_tagList;
+		bool m_readSwitch;
 
 		void parseCL(int argc, char **argv);
-		void tagFiles();
+		void readTags();
+		void writeTags();
 
 	public:
 
