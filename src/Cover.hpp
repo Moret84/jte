@@ -38,7 +38,7 @@ class Cover : public TagLib::File
 
 	public:
 		Cover(const char *file);
-		TagLib::ByteVector const data(){ return readBlock(length()); }
+		TagLib::ByteVector const data() { return readBlock(length()); }
 		std::string getMimeType() const;
 };
 

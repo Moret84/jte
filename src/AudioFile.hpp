@@ -28,7 +28,6 @@
 #include <taglib/tstring.h>
 #include <taglib/fileref.h>
 #include <map>
-#include <functional>
 #include "Cover.hpp"
 
 enum audioFileType
@@ -38,38 +37,19 @@ enum audioFileType
 	FLAC
 };
 
-enum availableTags
-{
-	GENRE,
-	YEAR,
-	ALBUM,
-	ARTIST,
-	TITLE,
-	TRACK
-};
-
 class AudioFile
 {
-	private:
-		std::map<std::string, std::function<void(const TagLib::String &value)>> m_setMap;
-		std::map<std::string, std::function<void()>> m_getMap;
-
 	protected:
 		TagLib::File* m_file;
 
 	public:
-		virtual ~AudioFile();
-		TagLib::Tag* tag();
+		virtual ~AudioFile() { delete m_file; }
 
-		void set(const std::string &tagType, const TagLib::String &value);
+		void set(const std::string &tag, const TagLib::String &value);
+		void get() const;
+		void clear();
 
-		virtual void setGenre(const TagLib::String &s);
-		virtual void setYear(const TagLib::String &s);
-		virtual void setAlbum(const TagLib::String &s);
-		virtual void setArtist(const TagLib::String &s);
-		virtual void setTitle(const TagLib::String &s);
-		virtual void setTrack(const TagLib::String &s);
-		virtual void save();
+		void save() { m_file->save(); }
 
 		virtual void setCover(const TagLib::String &s) = 0;
 };

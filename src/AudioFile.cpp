@@ -25,58 +25,35 @@
 
 using namespace std;
 
-AudioFile::AudioFile()
+void AudioFile::set(const std::string &tag, const TagLib::String &value)
 {
-
+	if(tag == "genre")
+		m_file->tag()->setGenre(value);
+	else if(tag == "year")
+		m_file->tag()->setYear(value.toInt());
+	else if(tag == "album")
+		m_file->tag()->setAlbum(value);
+	else if(tag == "artist")
+		m_file->tag()->setArtist(value);
+	else if(tag == "title")
+		m_file->tag()->setTitle(value);
+	else if(tag == "trackNumber")
+		m_file->tag()->setTrack(value.toInt());
+	else if(tag == "cover")
+		this->setCover(value);
 }
 
-AudioFile::~AudioFile()
+void AudioFile::get() const
 {
-	delete m_file;
+		cout << "Track:	" << m_file->tag()->track() << endl;
+		cout << "Title:	" << m_file->tag()->title() << endl;
+		cout << "Artist:	" << m_file->tag()->artist() << endl;
+		cout << "Album:	" << m_file->tag()->album() << endl;
+		cout << "Year:	" << m_file->tag()->year() << endl;
+		cout << "Genre:	" << m_file->tag()->genre() << endl;
 }
 
-TagLib::Tag* AudioFile::tag()
+void AudioFile::clear()
 {
-	return m_file->tag();
+	//m_file->clear();
 }
-
-void set(availableTags, TagLib::String &s)
-{
-
-}
-
-void AudioFile::setGenre(const TagLib::String &s)
-{
-	m_file->tag()->setGenre(s);
-}
-
-void AudioFile::setYear(const TagLib::String &s)
-{
-	m_file->tag()->setYear(s.toInt());
-}
-
-void AudioFile::setAlbum(const TagLib::String &s)
-{
-	m_file->tag()->setAlbum(s);
-}
-
-void AudioFile::setArtist(const TagLib::String &s)
-{
-	m_file->tag()->setArtist(s);
-}
-
-void AudioFile::setTitle(const TagLib::String &s)
-{
-	m_file->tag()->setTitle(s);
-}
-
-void AudioFile::setTrack(const TagLib::String &s)
-{
-	m_file->tag()->setTrack(s.toInt());
-}
-
-void AudioFile::save()
-{
-	m_file->save();
-}
-

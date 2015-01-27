@@ -55,7 +55,8 @@ void FLACFile::setCover(const TagLib::String &path)
 		for(it = embeddedPicturesList.begin(); it != embeddedPicturesList.end(); ++it)
 		{
 			TagLib::ByteVector block = (*it)->render();
-			t->addField("METADATA_BLOCK_PICTURE", base64_encode((unsigned char*)block.data(), block.size()), true);
+			//t->addField("METADATA_BLOCK_PICTURE", base64_encode((unsigned char*)block.data(), block.size()), true);
+			t->addField("METADATA_BLOCK_PICTURE", base64_encode(reinterpret_cast<unsigned char*>(block.data()), block.size()), true);
 		}
 	}
 	catch(string &s)

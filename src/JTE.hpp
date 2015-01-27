@@ -35,16 +35,21 @@
 #include <map>
 #include <forward_list>
 
+enum mode
+{
+	READ,
+	WRITE,
+	CLEAR
+};
+
 class JTE
 {
 	private:
 		std::forward_list<AudioFile*> m_fileList;
 		std::map<std::string, TagLib::String> m_tagList;
-		bool m_readSwitch;
+		mode m_mode;
 
 		void parseCL(int argc, char **argv);
-		void readTags();
-		void writeTags();
 
 	public:
 

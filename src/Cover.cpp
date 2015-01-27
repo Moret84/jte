@@ -36,7 +36,7 @@ Cover::Cover(const char *file) : TagLib::File(file)
 	else if(extension == "jpeg" || extension == "jpg")
 		m_mimeType += "jpeg";
 	else
-		throw string(fileName + "Unknown picture type. The tag cover hasn't been set");
+		throw string(fileName + ": Unknown picture type.");
 }
 
 string Cover::getMimeType() const
