@@ -26,7 +26,7 @@ mrproper:clean
 
 rebuild:mrproper all
 
-install:
+install: $(EXEC)
 ifeq ($(USER),root)
 	@mv $(EXEC) /bin/
 else
