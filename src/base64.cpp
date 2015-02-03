@@ -33,7 +33,7 @@ std::string base64_encode(const unsigned char *input, size_t size)
 {
 	std::string output;
 	unsigned char block[3] = {0};
-	int i;
+	unsigned int i;
 
 	output.reserve(((size / 3) + 1) * 4);
 
