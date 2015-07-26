@@ -17,23 +17,25 @@ void FLACFile::setCover(const TagLib::String &path)
 		//Remove all pictures
 		dynamic_cast<TagLib::FLAC::File*>(m_file)->removePictures();
 
-		//Embedding picture into file
-		TagLib::FLAC::Picture* picture = new TagLib::FLAC::Picture;
-		picture->setData(c.data());
-		picture->setType((TagLib::FLAC::Picture::Type) 0x03); // Front Cover
-		picture->setMimeType(c.getMimeType());
-		picture->setDescription("Front Cover");
-		dynamic_cast<TagLib::FLAC::File*>(m_file)->addPicture(picture);
-
-		//Linking
-		TagLib::List<TagLib::FLAC::Picture*> embeddedPicturesList = dynamic_cast<TagLib::FLAC::File*>(m_file)->pictureList();
-		TagLib::List<TagLib::FLAC::Picture*>::Iterator it;
-
-		for(it = embeddedPicturesList.begin(); it != embeddedPicturesList.end(); ++it)
+		if(path != TagLib::String::null)
 		{
-			TagLib::ByteVector block = (*it)->render();
-			//t->addField("METADATA_BLOCK_PICTURE", base64_encode((unsigned char*)block.data(), block.size()), true);
-			t->addField("METADATA_BLOCK_PICTURE", base64_encode(reinterpret_cast<unsigned char*>(block.data()), block.size()), true);
+			//Embedding picture into file
+			TagLib::FLAC::Picture* picture = new TagLib::FLAC::Picture;
+			picture->setData(c.data());
+			picture->setType((TagLib::FLAC::Picture::Type) 0x03); // Front Cover
+			picture->setMimeType(c.getMimeType());
+			picture->setDescription("Front Cover");
+			dynamic_cast<TagLib::FLAC::File*>(m_file)->addPicture(picture);
+
+			//Linking
+			TagLib::List<TagLib::FLAC::Picture*> embeddedPicturesList = dynamic_cast<TagLib::FLAC::File*>(m_file)->pictureList();
+			TagLib::List<TagLib::FLAC::Picture*>::Iterator it;
+
+			for(it = embeddedPicturesList.begin(); it != embeddedPicturesList.end(); ++it)
+			{
+				TagLib::ByteVector block = (*it)->render();
+				t->addField("METADATA_BLOCK_PICTURE", base64_encode(reinterpret_cast<unsigned char*>(block.data()), block.size()), true);
+			}
 		}
 	}
 	catch(string &s)

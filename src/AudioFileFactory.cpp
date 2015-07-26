@@ -24,6 +24,7 @@ audioFileType AudioFileFactory::getFileType(const string &fileName)
 {
 	string extension = fileName.substr(fileName.find_last_of('.') + 1);
 	transform(extension.begin(), extension.end(), extension.begin(), ::tolower);
+
 	if(extension == "mp3")
 		return audioFileType::MP3;
 	else if(extension == "flac")

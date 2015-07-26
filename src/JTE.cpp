@@ -111,6 +111,5 @@ void JTE::run()
 
 			(*it)->save();
 		}
-
 	}
 }

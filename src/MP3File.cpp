@@ -14,11 +14,14 @@ void MP3File::setCover(const TagLib::String &path)
 		Cover c(path.toCString());
 		TagLib::ID3v2::Tag *t = dynamic_cast<TagLib::MPEG::File*>(m_file)->ID3v2Tag(true);
 
-		TagLib::ID3v2::AttachedPictureFrame *frame = new TagLib::ID3v2::AttachedPictureFrame;
-		frame->setMimeType(c.getMimeType());
-		frame->setPicture(c.data());
+		if(path != TagLib::String::null)
+		{
+			TagLib::ID3v2::AttachedPictureFrame *frame = new TagLib::ID3v2::AttachedPictureFrame;
+			frame->setMimeType(c.getMimeType());
+			frame->setPicture(c.data());
 
-		t->addFrame(frame);
+			t->addFrame(frame);
+		}
 	}
 	catch(string &s)
 	{

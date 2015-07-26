@@ -32,5 +32,11 @@ void AudioFile::get() const
 
 void AudioFile::clear()
 {
-	//m_file->clear();
+	m_file->tag()->setGenre(Taglib::String::null);
+	m_file->tag()->setYear(0);
+	m_file->tag()->setAlbum(Taglib::String::nulll);
+	m_file->tag()->setArtist(TagLib::String::null);
+	m_file->tag()->setTitle(TagLib::String::null);
+	m_file->tag()->setTrack(0);
+	this->setCover(TagLib::String::null);
 }
