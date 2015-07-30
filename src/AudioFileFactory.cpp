@@ -2,40 +2,22 @@
 
 using namespace std;
 
+map<string, function<AudioFile*(string)>> AudioFileFactory::typeMap;
+
 AudioFile* AudioFileFactory::create(const string &path)
 {
-	try
-	{
-		audioFileType type = getFileType(path);
-
-		if(type == audioFileType::MP3)
-			return new MP3File(path);
-		else if(type == audioFileType::FLAC)
-			return new FLACFile(path);
-	}
-	catch(string &s)
-	{
-		cerr << s <<endl;
-	}
-		return nullptr;
-}
-
-audioFileType AudioFileFactory::getFileType(const string &fileName)
-{
-	string extension = fileName.substr(fileName.find_last_of('.') + 1);
+	string extension = path.substr(path.find_last_of('.') + 1);
 	transform(extension.begin(), extension.end(), extension.begin(), ::tolower);
 
-	if(extension == "mp3")
-		return audioFileType::MP3;
-	else if(extension == "flac")
-		return audioFileType::FLAC;
-	else if(extension == "ogg")
-		return audioFileType::OGG;
+	auto it = AudioFileFactory::typeMap.find(extension);
+
+	if(it != AudioFileFactory::typeMap.end())
+		return it->second(path);
 	else
-		throw string(fileName + ": Unknown file type");
+		throw string(path + ": Unknown file type");
 }
 
-void AudioFileFactory::destroy(AudioFile* af)
+void AudioFileFactory::Register(string key, function<AudioFile*(string)> createFunction)
 {
-	delete af;
+	AudioFileFactory::typeMap.insert(make_pair(key, createFunction));
 }

@@ -4,14 +4,14 @@ using namespace std;
 
 JTE::JTE(int argc, char **argv)
 {
+	AudioFileFactory::Register("mp3", function<AudioFile*(string)>(createTypedAudioFile<MP3File>));
+	AudioFileFactory::Register("flac", function<AudioFile*(string)>(createTypedAudioFile<FLACFile>));
+
 	parseCL(argc, argv);
 }
 
 JTE::~JTE()
 {
-	forward_list<AudioFile*>::iterator it;
-	for(it = m_fileList.begin(); it != m_fileList.end(); ++it)
-		AudioFileFactory::destroy((*it));
 }
 
 void JTE::parseCL(int argc, char **argv)
