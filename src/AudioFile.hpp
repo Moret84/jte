@@ -7,13 +7,6 @@
 #include <map>
 #include "Cover.hpp"
 
-enum audioFileType
-{
-	MP3,
-	OGG,
-	FLAC
-};
-
 class AudioFile
 {
 	protected:
