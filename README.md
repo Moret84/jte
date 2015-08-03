@@ -25,6 +25,12 @@ To install just type:
 ### Usage
 ```
  jte  [-n <number>] [-t <title>] [-a <artist>] [-A <album>] [-y <year>] [-g <genre>] [-c <path/to/cover>] [-h] <file(s)>
+ 
+ --clear
+ clear all tags
+
+ -l,  --list
+ list tag(s) instead of write them
 
  -n <number>,  --tracknumber <number>  
  Define the tracknumber tag
@@ -52,4 +58,4 @@ To install just type:
 ```
 ### Informations and additional formats
 
-jte is very simple and uses the awesome [taglib](https://taglib.github.io/) library. Taglib provides an easy-to-implement high-level API to tag music (whatever the format) with commons metadatas such as title, artist, year, etc.  But there is no high-level cover feature (for know). jte tries to help to provide it. For know, only MP3 and FLAC files are working. If you want to add a format to the list you just have to extend the AudioFile class and implements the setCover method. Due to a bad design (:s), you also have to add to the audioFileType enum the type of the file you want to handle and some conditions in the factory.
+jte is very simple and uses the awesome [taglib](https://taglib.github.io/) library. Taglib provides an easy-to-implement high-level API to tag music (whatever the format) with commons metadatas such as title, artist, year, etc.  But there is no high-level cover feature (for know). jte tries to help to provide it. For know, only MP3 and FLAC files are working. If you want to add a format to the list you just have to extend the AudioFile class and implements the setCover method as well as clearCover(). Then, you just have to register your new format in the format map, giving the extension of the file it handles. Pull requests in that way are welcome.
