@@ -10,12 +10,7 @@ MP3File::MP3File(const string &path)
 void MP3File::clearCover()
 {
 	TagLib::ID3v2::Tag *t = dynamic_cast<TagLib::MPEG::File*>(m_file)->ID3v2Tag(true);
-	TagLib::ID3v2::FrameList frameList = t->frameList();
-	TagLib::List<TagLib::ID3v2::Frame*>::Iterator it;
-
-	for(it = frameList.begin(); it != frameList.end(); ++it)
-		if(strcmp((*it)->frameID().data(), "APIC") == 0)
-			frameList.erase(it);
+	t->removeFrames(TagLib::ByteVector("APIC"));
 }
 
 void MP3File::setCover(const TagLib::String &path)
