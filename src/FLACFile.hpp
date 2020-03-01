@@ -8,8 +8,6 @@
 #include <taglib/flacpicture.h>
 #include <taglib/tlist.h>
 
-#include "base64.hpp"
-
 class FLACFile : public AudioFile
 {
 	public:
