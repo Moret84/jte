@@ -22,6 +22,7 @@ class AudioFile
 		void save() { m_file->save(); }
 
 		virtual void setCover(const TagLib::String &s) = 0;
+		virtual void clearCover() = 0;
 };
 
 #endif

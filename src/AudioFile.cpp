@@ -39,5 +39,5 @@ void AudioFile::clear()
 	m_file->tag()->setTitle(TagLib::String::null);
 	m_file->tag()->setTrack(0);
 	m_file->tag()->setComment(TagLib::String::null);
-	this->setCover(TagLib::String::null);
+	this->clearCover();
 }
