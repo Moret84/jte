@@ -13,6 +13,9 @@ class MP3File : public AudioFile
 		MP3File(const std::string &path);
 		void setCover(const TagLib::String &path);
 		void clearCover();
+
+	private:
+		TagLib::MPEG::File* m_internalFile;
 };
 
 #endif

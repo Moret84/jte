@@ -5,6 +5,7 @@ using namespace std;
 MP3File::MP3File(const string &path)
 {
 	m_file = new TagLib::MPEG::File(path.c_str());
+	m_internalFile = dynamic_cast<TagLib::MPEG::File*>(m_file);
 }
 
 void MP3File::clearCover()

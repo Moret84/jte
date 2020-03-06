@@ -5,16 +5,17 @@ using namespace std;
 FLACFile::FLACFile(const string &path)
 {
 	m_file = new TagLib::FLAC::File(path.c_str());
+	m_internalFile = dynamic_cast<TagLib::FLAC::File*>(m_file);
 }
 
 void FLACFile::clearCover()
 {
-	dynamic_cast<TagLib::FLAC::File*>(m_file)->removePictures();
+	m_internalFile->removePictures();
 }
 
 void FLACFile::setCover(const TagLib::String &path)
 {
-	TagLib::List<TagLib::FLAC::Picture*> embeddedPicturesList = dynamic_cast<TagLib::FLAC::File*>(m_file)->pictureList();
+	TagLib::List<TagLib::FLAC::Picture*> embeddedPicturesList = m_internalFile->pictureList();
 	TagLib::List<TagLib::FLAC::Picture*>::ConstIterator it;
 
 	clearCover();

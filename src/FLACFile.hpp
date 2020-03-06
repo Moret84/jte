@@ -14,6 +14,9 @@ class FLACFile : public AudioFile
 		FLACFile(const std::string &path);
 		void setCover(const TagLib::String &path);
 		void clearCover();
+
+	private:
+		TagLib::FLAC::File* m_internalFile;
 };
 
 #endif
