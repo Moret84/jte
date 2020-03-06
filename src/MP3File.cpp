@@ -11,6 +11,7 @@ MP3File::MP3File(const string &path)
 void MP3File::clearCover()
 {
 	clearID3Cover();
+	clearAPECover();
 }
 
 void MP3File::setCover(const TagLib::String &path)
@@ -58,3 +59,22 @@ void MP3File::clearID3Cover()
 	}
 }
 
+void MP3File::clearAPECover()
+{
+	if (!m_internalFile->hasAPETag())
+		return;
+
+	TagLib::APE::Tag *t = m_internalFile->APETag(false);
+
+	std::list<TagLib::String> itemsToDelete;
+
+	for (auto i : t->itemListMap()) {
+		if (i.second.type() == TagLib::APE::Item::ItemTypes::Binary) {
+			itemsToDelete.push_back(i.first);
+		}
+	}
+
+	for (auto i : itemsToDelete) {
+		t->removeItem(i);
+	}
+}
