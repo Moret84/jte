@@ -15,6 +15,7 @@ class MP3File : public AudioFile
 		void clearCover();
 
 	private:
+		void clearID3Cover();
 		TagLib::MPEG::File* m_internalFile;
 };
 

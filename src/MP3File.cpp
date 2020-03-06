@@ -10,21 +10,19 @@ MP3File::MP3File(const string &path)
 
 void MP3File::clearCover()
 {
-	TagLib::ID3v2::Tag *t = dynamic_cast<TagLib::MPEG::File*>(m_file)->ID3v2Tag(true);
-	t->removeFrames(TagLib::ByteVector("APIC"));
+	clearID3Cover();
 }
 
 void MP3File::setCover(const TagLib::String &path)
 {
 	try
 	{
-		TagLib::ID3v2::Tag *t = dynamic_cast<TagLib::MPEG::File*>(m_file)->ID3v2Tag(true);
+		TagLib::ID3v2::Tag *t = m_internalFile->ID3v2Tag(true);
 
 		clearCover();
 
 		if(path != TagLib::String::null)
 		{
-
 			Cover c(path.toCString());
 
 			TagLib::ID3v2::AttachedPictureFrame *frame = new TagLib::ID3v2::AttachedPictureFrame;
@@ -39,3 +37,24 @@ void MP3File::setCover(const TagLib::String &path)
 		cerr << s << endl;
 	}
 }
+
+void MP3File::clearID3Cover()
+{
+	if (!m_internalFile->hasID3v2Tag())
+		return;
+	
+	TagLib::ID3v2::Tag *t = m_internalFile->ID3v2Tag(true);
+
+	std::list<TagLib::ID3v2::Frame*> framesToDelete;
+
+	for (auto i : t->frameList()) {
+		if (dynamic_cast<TagLib::ID3v2::AttachedPictureFrame*>(i) != nullptr) {
+			framesToDelete.push_back(i);
+		}
+	}
+
+	for (auto i : framesToDelete) {
+		t->removeFrame(i);
+	}
+}
+
