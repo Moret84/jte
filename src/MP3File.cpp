@@ -4,8 +4,8 @@ using namespace std;
 
 MP3File::MP3File(const string &path)
 {
-	m_file = new TagLib::MPEG::File(path.c_str());
-	m_internalFile = dynamic_cast<TagLib::MPEG::File*>(m_file);
+	m_internalFile = new TagLib::MPEG::File(path.c_str());
+	m_file = m_internalFile;
 }
 
 void MP3File::clearCover()
@@ -49,7 +49,7 @@ void MP3File::clearID3Cover()
 	std::list<TagLib::ID3v2::Frame*> framesToDelete;
 
 	for (auto i : t->frameList()) {
-		if (dynamic_cast<TagLib::ID3v2::AttachedPictureFrame*>(i) != nullptr) {
+		if (i->frameID().endsWith("PIC")) {
 			framesToDelete.push_back(i);
 		}
 	}

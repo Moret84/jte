@@ -4,8 +4,8 @@ using namespace std;
 
 FLACFile::FLACFile(const string &path)
 {
-	m_file = new TagLib::FLAC::File(path.c_str());
-	m_internalFile = dynamic_cast<TagLib::FLAC::File*>(m_file);
+	m_internalFile = new TagLib::FLAC::File(path.c_str());
+	m_file = m_internalFile;
 }
 
 void FLACFile::clearCover()
@@ -30,6 +30,7 @@ void FLACFile::setCover(const TagLib::String &path)
 		picture->setType(TagLib::FLAC::Picture::Type::FrontCover);
 		picture->setMimeType(cover.getMimeType());
 		picture->setDescription("Front Cover");
-		dynamic_cast<TagLib::FLAC::File*>(m_file)->addPicture(picture);
+
+		m_internalFile->addPicture(picture);
 	}
 }
