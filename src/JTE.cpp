@@ -18,7 +18,7 @@ void JTE::parseCL(int argc, char **argv)
 {
 	try
 	{
-		TCLAP::CmdLine cmd("jdid tag editor", ' ', "0.1");
+		TCLAP::CmdLine cmd("jdid tag editor", ' ', "1.0");
 
 		TCLAP::ValueArg<string>
 			cover("c", "cover", "Define the front cover tag", false, "", "path/to/cover", cmd),
@@ -58,7 +58,7 @@ void JTE::parseCL(int argc, char **argv)
 
 			//Creating the tag map
 			if(cover.isSet())
-				m_tagList["cover"] = TagLib::String(cover.getValue(), TagLib::String::Type::UTF8);
+				m_tagList["cover"] = TagLib::String(cover.getValue());
 			if(genre.isSet())
 				m_tagList["genre"] = TagLib::String(genre.getValue(), TagLib::String::Type::UTF8);
 			if(year.isSet())

@@ -20,8 +20,7 @@ void FLACFile::setCover(const TagLib::String &path)
 
 	clearCover();
 
-	if(path != TagLib::String::null)
-	{
+	if(path != TagLib::String::null) {
 		Cover cover(path.toCString());
 
 		//Embedding picture into file
@@ -32,5 +31,7 @@ void FLACFile::setCover(const TagLib::String &path)
 		picture->setDescription("Front Cover");
 
 		m_internalFile->addPicture(picture);
+	} else {
+		cerr << "Could not set cover: path is empty" << std::endl;
 	}
 }

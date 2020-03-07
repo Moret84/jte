@@ -22,8 +22,7 @@ void MP3File::setCover(const TagLib::String &path)
 
 		clearCover();
 
-		if(path != TagLib::String::null)
-		{
+		if(path != TagLib::String::null) {
 			Cover c(path.toCString());
 
 			TagLib::ID3v2::AttachedPictureFrame *frame = new TagLib::ID3v2::AttachedPictureFrame;
@@ -32,6 +31,8 @@ void MP3File::setCover(const TagLib::String &path)
 			frame->setType(TagLib::ID3v2::AttachedPictureFrame::Type::FrontCover);
 
 			t->addFrame(frame);
+		} else {
+			cerr << "Could not set cover: path is empty" << std::endl;
 		}
 	}
 	catch(string &s)
