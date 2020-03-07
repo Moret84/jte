@@ -29,6 +29,7 @@ void MP3File::setCover(const TagLib::String &path)
 			TagLib::ID3v2::AttachedPictureFrame *frame = new TagLib::ID3v2::AttachedPictureFrame;
 			frame->setMimeType(c.getMimeType());
 			frame->setPicture(c.data());
+			frame->setType(TagLib::ID3v2::AttachedPictureFrame::Type::FrontCover);
 
 			t->addFrame(frame);
 		}
