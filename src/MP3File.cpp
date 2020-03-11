@@ -20,8 +20,6 @@ void MP3File::setCover(const TagLib::String &path)
 	{
 		TagLib::ID3v2::Tag *t = m_internalFile->ID3v2Tag(true);
 
-		clearCover();
-
 		if(path != TagLib::String::null) {
 			Cover c(path.toCString());
 

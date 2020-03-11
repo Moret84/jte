@@ -23,8 +23,6 @@ void FLACFile::setCover(const TagLib::String &path)
 	TagLib::List<TagLib::FLAC::Picture*> embeddedPicturesList = m_internalFile->pictureList();
 	TagLib::List<TagLib::FLAC::Picture*>::ConstIterator it;
 
-	clearCover();
-
 	if(path != TagLib::String::null) {
 		Cover cover(path.toCString());
 
