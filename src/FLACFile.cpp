@@ -33,7 +33,6 @@ void FLACFile::setCover(const TagLib::String &path)
 		picture->setData(cover.data());
 		picture->setType(TagLib::FLAC::Picture::Type::FrontCover);
 		picture->setMimeType(cover.getMimeType());
-		picture->setDescription("Front Cover");
 
 		m_internalFile->addPicture(picture);
 	} else {
