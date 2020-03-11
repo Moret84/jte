@@ -11,6 +11,11 @@ FLACFile::FLACFile(const string &path)
 void FLACFile::clearCover()
 {
 	m_internalFile->removePictures();
+
+	if (m_internalFile->hasXiphComment()) {
+		TagLib::Ogg::XiphComment *comment = m_internalFile->xiphComment();
+		comment->removeAllPictures();
+	}
 }
 
 void FLACFile::setCover(const TagLib::String &path)
