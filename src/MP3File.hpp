@@ -10,15 +10,15 @@
 
 class MP3File : public AudioFile
 {
-	public:
-		MP3File(const std::string &path);
-		void setCover(const TagLib::String &path);
-		void clearCover();
+    public:
+        MP3File(const std::string &path);
+        void setCover(const TagLib::String &path);
+        void clearCover();
 
-	private:
-		void clearID3Cover();
-		void clearAPECover();
-		TagLib::MPEG::File* m_internalFile;
+    private:
+        void clearID3Cover();
+        void clearAPECover();
+        TagLib::MPEG::File* m_internalFile;
 };
 
 #endif

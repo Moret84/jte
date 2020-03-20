@@ -3,7 +3,7 @@
 
 int main(int argc, char ** argv)
 {
-	JTE J(argc, argv);
-	J.run();
-	return 0;
+    JTE J(argc, argv);
+    J.run();
+    return 0;
 }

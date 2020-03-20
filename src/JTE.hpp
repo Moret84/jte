@@ -14,26 +14,26 @@
 
 enum mode
 {
-	READ,
-	WRITE,
-	CLEAR
+    READ,
+    WRITE,
+    CLEAR
 };
 
 class JTE
 {
-	private:
-		std::forward_list<AudioFile*> m_fileList;
-		std::map<std::string, TagLib::String> m_tagList;
-		mode m_mode;
+    private:
+        std::forward_list<AudioFile*> m_fileList;
+        std::map<std::string, TagLib::String> m_tagList;
+        mode m_mode;
 
-		void parseCL(int argc, char **argv);
+        void parseCL(int argc, char **argv);
 
-	public:
+    public:
 
-		JTE(int argc, char **argv);
-		~JTE();
+        JTE(int argc, char **argv);
+        ~JTE();
 
-		void run();
+        void run();
 };
 
 #endif
