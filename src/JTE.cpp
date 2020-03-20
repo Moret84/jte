@@ -49,9 +49,13 @@ void JTE::parseCL(int argc, char **argv)
 
         //What to do
         if(list.isSet())
+        {
             m_mode = mode::READ;
+        }
         else if(clear.isSet())
+        {
             m_mode = mode::CLEAR;
+        }
         else
         {
             m_mode = mode::WRITE;
@@ -96,12 +100,15 @@ void JTE::run()
             continue;
 
         if(m_mode == mode::READ)
+        {
             (*it)->get();
+        }
         else
         {
             if(m_mode == mode::CLEAR)
+            {
                 (*it)->clear();
-
+            }
             else if(m_mode == mode::WRITE)
             {
                 map<string, TagLib::String>::iterator itTag;

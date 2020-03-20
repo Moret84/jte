@@ -29,15 +29,3 @@ void AudioFile::get() const
         cout << "Year:  " << m_file->tag()->year() << endl;
         cout << "Genre: " << m_file->tag()->genre().to8Bit(true) << endl;
 }
-
-void AudioFile::clear()
-{
-    m_file->tag()->setGenre(TagLib::String::null);
-    m_file->tag()->setYear(0);
-    m_file->tag()->setAlbum(TagLib::String::null);
-    m_file->tag()->setArtist(TagLib::String::null);
-    m_file->tag()->setTitle(TagLib::String::null);
-    m_file->tag()->setTrack(0);
-    m_file->tag()->setComment(TagLib::String::null);
-    this->clearCover();
-}

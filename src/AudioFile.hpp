@@ -17,12 +17,11 @@ class AudioFile
 
         void set(const std::string &tag, const TagLib::String &value);
         void get() const;
-        void clear();
 
         void save() { m_file->save(); }
 
+        virtual void clear() = 0;
         virtual void setCover(const TagLib::String &s) = 0;
-        virtual void clearCover() = 0;
 };
 
 #endif

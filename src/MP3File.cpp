@@ -43,7 +43,7 @@ void MP3File::clearID3Cover()
 {
     if (!m_internalFile->hasID3v2Tag())
         return;
-    
+
     TagLib::ID3v2::Tag *t = m_internalFile->ID3v2Tag(true);
 
     std::list<TagLib::ID3v2::Frame*> framesToDelete;
@@ -77,4 +77,10 @@ void MP3File::clearAPECover()
     for (auto i : itemsToDelete) {
         t->removeItem(i);
     }
+}
+
+void MP3File::clear()
+{
+    clearCover();
+    m_internalFile->strip();
 }
