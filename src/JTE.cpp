@@ -1,11 +1,14 @@
 #include "JTE.hpp"
 
+#include "M4AFile.hpp"
+
 using namespace std;
 
 JTE::JTE(int argc, char **argv)
 {
     AudioFileFactory::Register("mp3", function<AudioFile*(string)>(createTypedAudioFile<MP3File>));
     AudioFileFactory::Register("flac", function<AudioFile*(string)>(createTypedAudioFile<FLACFile>));
+    AudioFileFactory::Register("m4a", function<AudioFile*(string)>(createTypedAudioFile<M4AFile>));
 
     parseCL(argc, argv);
 }
