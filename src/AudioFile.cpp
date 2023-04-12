@@ -24,7 +24,7 @@ void AudioFile::get() const
 {
         cout << "Track: " << m_file->tag()->track() << endl;
         cout << "Title: " << m_file->tag()->title().to8Bit(true) << endl;
-        cout << "Artist:    " << m_file->tag()->artist().to8Bit(true) << endl;
+        cout << "Artist: " << m_file->tag()->artist().to8Bit(true) << endl;
         cout << "Album: " << m_file->tag()->album().to8Bit(true) << endl;
         cout << "Year:  " << m_file->tag()->year() << endl;
         cout << "Genre: " << m_file->tag()->genre().to8Bit(true) << endl;
