@@ -23,7 +23,7 @@ void FLACFile::setCover(const TagLib::String &path)
     TagLib::List<TagLib::FLAC::Picture*> embeddedPicturesList = m_internalFile->pictureList();
     TagLib::List<TagLib::FLAC::Picture*>::ConstIterator it;
 
-    if(path != TagLib::String::null) {
+    if (!path.isEmpty()) {
         Cover cover(path.toCString());
 
         // Embedding picture into file

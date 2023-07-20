@@ -23,7 +23,7 @@ void M4AFile::clearCover()
 
 void M4AFile::setCover(const TagLib::String &path)
 {
-    if (path == TagLib::String::null)
+    if (path.isEmpty())
     {
         cerr << "Could not set cover: path is empty" << std::endl;
         return;
