@@ -20,7 +20,7 @@ void MP3File::setCover(const TagLib::String &path)
     {
         TagLib::ID3v2::Tag *t = m_internalFile->ID3v2Tag(true);
 
-        if(path != TagLib::String::null) {
+        if (!path.isEmpty()) {
             Cover c(path.toCString());
 
             TagLib::ID3v2::AttachedPictureFrame *frame = new TagLib::ID3v2::AttachedPictureFrame;
