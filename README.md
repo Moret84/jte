@@ -58,4 +58,11 @@ To install just type:
 ```
 ### Informations and additional formats
 
-jte is very simple and uses the awesome [taglib](https://taglib.github.io/) library. Taglib provides an easy-to-implement high-level API to tag music (whatever the format) with commons metadatas such as title, artist, year, etc.  But there is no high-level cover feature (for know). jte tries to help to provide it. For know, only MP3 and FLAC files are working. If you want to add a format to the list you just have to extend the AudioFile class and implements the setCover method as well as clearCover(). Then, you just have to register your new format in the format map, giving the extension of the file it handles. Pull requests in that way are welcome.
+**jte** is very simple and uses the awesome [taglib](https://taglib.github.io/) library.  
+Taglib provides an easy-to-implement high-level API to tag music (whatever the format) with commons metadatas such as title, artist, year, etc. But there is no high-level cover feature (for know).  
+**jte** tries to help to provide it.  
+
+As of now, **jte** supports MP3, FLAC, M4A and WAV.  
+If you want to add a format to the list, you just have to extend the AudioFile class and implements the setCover method as well as clearCover(). Then, you just have to register your new format in the format map, giving the extension of the file it handles.  
+
+Pull requests in that way are welcome.
