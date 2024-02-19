@@ -1,5 +1,5 @@
 CXX=clang
-CXXFLAGS= -std=c++11 -Wall -I src/
+CXXFLAGS= -std=c++17 -Wall -I src/
 LDFLAGS= -ltag -lstdc++
 
 SRCDIR=src
