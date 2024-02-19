@@ -1,9 +1,11 @@
+#include "Cover.hpp"
 #include "M4AFile.hpp"
 
 #include <taglib/tpropertymap.h>
 #include <taglib/mp4tag.h>
 #include <taglib/mp4coverart.h>
-#include "Cover.hpp"
+
+#include <iostream>
 
 using namespace std;
 

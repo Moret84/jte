@@ -1,8 +1,10 @@
+#include "WAVFile.hpp"
+
 #include <taglib/wavfile.h>
 #include <taglib/id3v2tag.h>
 #include <taglib/attachedpictureframe.h>
 
-#include "WAVFile.hpp"
+#include <iostream>
 
 WAVFile::WAVFile(const std::string &path)
 {

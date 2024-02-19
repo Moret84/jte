@@ -1,4 +1,5 @@
 #include "FLACFile.hpp"
+#include <iostream>
 
 using namespace std;
 

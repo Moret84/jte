@@ -1,5 +1,7 @@
 #include "MP3File.hpp"
 
+#include <iostream>
+
 using namespace std;
 
 MP3File::MP3File(const string &path)
