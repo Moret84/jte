@@ -2,6 +2,7 @@
 
 #include "M4AFile.hpp"
 #include "WAVFile.hpp"
+#include "OpusFile.hpp"
 
 using namespace std;
 
@@ -11,6 +12,7 @@ JTE::JTE(int argc, char **argv)
     AudioFileFactory::Register("flac", function<AudioFile*(string)>(createTypedAudioFile<FLACFile>));
     AudioFileFactory::Register("m4a", function<AudioFile*(string)>(createTypedAudioFile<M4AFile>));
     AudioFileFactory::Register("wav", function<AudioFile*(string)>(createTypedAudioFile<WAVFile>));
+    AudioFileFactory::Register("opus", function<AudioFile*(string)>(createTypedAudioFile<OpusFile>));
 
     parseCL(argc, argv);
 }
