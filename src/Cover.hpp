@@ -2,8 +2,6 @@
 #define COVER_HPP
 
 #include <taglib/fileref.h>
-#include <algorithm>
-#include <string>
 
 class Cover : public TagLib::File
 {
@@ -14,7 +12,7 @@ class Cover : public TagLib::File
         std::string m_mimeType;
 
     public:
-        Cover(const char *file);
+        Cover(const std::string &file);
         TagLib::ByteVector const data() { return readBlock(length()); }
         std::string getMimeType() const;
 };

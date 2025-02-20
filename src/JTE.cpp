@@ -1,18 +1,23 @@
 #include "JTE.hpp"
 
+#include "FLACFile.hpp"
 #include "M4AFile.hpp"
-#include "WAVFile.hpp"
+#include "MP3File.hpp"
 #include "OpusFile.hpp"
+#include "WAVFile.hpp"
+
+#include <tclap/CmdLine.h>
+#include <tclap/ValueArg.h>
 
 using namespace std;
 
 JTE::JTE(int argc, char **argv)
 {
-    AudioFileFactory::Register("mp3", function<AudioFile*(string)>(createTypedAudioFile<MP3File>));
-    AudioFileFactory::Register("flac", function<AudioFile*(string)>(createTypedAudioFile<FLACFile>));
-    AudioFileFactory::Register("m4a", function<AudioFile*(string)>(createTypedAudioFile<M4AFile>));
-    AudioFileFactory::Register("wav", function<AudioFile*(string)>(createTypedAudioFile<WAVFile>));
-    AudioFileFactory::Register("opus", function<AudioFile*(string)>(createTypedAudioFile<OpusFile>));
+    AudioFileFactory::Register("mp3", function<AudioFile*(const string&)>(createTypedAudioFile<MP3File>));
+    AudioFileFactory::Register("flac", function<AudioFile*(const string&)>(createTypedAudioFile<FLACFile>));
+    AudioFileFactory::Register("m4a", function<AudioFile*(const string&)>(createTypedAudioFile<M4AFile>));
+    AudioFileFactory::Register("wav", function<AudioFile*(const string&)>(createTypedAudioFile<WAVFile>));
+    AudioFileFactory::Register("opus", function<AudioFile*(const string&)>(createTypedAudioFile<OpusFile>));
 
     parseCL(argc, argv);
 }
@@ -69,19 +74,19 @@ void JTE::parseCL(int argc, char **argv)
 
             //Creating the tag map
             if(cover.isSet())
-                m_tagList["cover"] = TagLib::String(cover.getValue());
+                m_tagList["cover"] = cover.getValue();
             if(genre.isSet())
-                m_tagList["genre"] = TagLib::String(genre.getValue(), TagLib::String::Type::UTF8);
+                m_tagList["genre"] = genre.getValue();
             if(year.isSet())
-                m_tagList["year"] = TagLib::String(year.getValue(), TagLib::String::Type::UTF8);
+                m_tagList["year"] = year.getValue();
             if(album.isSet())
-                m_tagList["album"] = TagLib::String(album.getValue(), TagLib::String::Type::UTF8);
+                m_tagList["album"] = album.getValue();
             if(artist.isSet())
-                m_tagList["artist"] = TagLib::String(artist.getValue(), TagLib::String::Type::UTF8);
+                m_tagList["artist"] = artist.getValue();
             if(title.isSet())
-                m_tagList["title"] = TagLib::String(title.getValue(), TagLib::String::Type::UTF8);
+                m_tagList["title"] = title.getValue();
             if(trackNumber.isSet())
-                m_tagList["trackNumber"] = TagLib::String(trackNumber.getValue(), TagLib::String::Type::UTF8);
+                m_tagList["trackNumber"] = trackNumber.getValue();
 
             if(m_tagList.empty())
                 throw TCLAP::ArgException("Nothing to do");
@@ -118,7 +123,7 @@ void JTE::run()
             }
             else if(m_mode == mode::WRITE)
             {
-                map<string, TagLib::String>::iterator itTag;
+                map<string, string>::iterator itTag;
                 for(itTag = m_tagList.begin(); itTag != m_tagList.end(); ++itTag)
                     (*it)->set((*itTag).first, (*itTag).second);
             }

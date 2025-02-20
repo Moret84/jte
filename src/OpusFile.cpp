@@ -1,14 +1,8 @@
 #include "OpusFile.hpp"
 
-#include <iostream>
-#include <taglib/flacfile.h>
-#include <taglib/xiphcomment.h>
-#include <taglib/flacpicture.h>
-#include <taglib/tlist.h>
+#include <taglib/opusfile.h>
 
-using namespace std;
-
-OpusFile::OpusFile(const string &path)
+OpusFile::OpusFile(const std::string &path)
 {
     m_internalFile = new TagLib::Ogg::Opus::File(path.c_str());
     m_file = m_internalFile;

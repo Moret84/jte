@@ -2,8 +2,8 @@
 #define OPUSFILE_HPP
 
 #include "AudioFile.hpp"
-#include <taglib/opusfile.h>
 
+#include <taglib/opusfile.h>
 
 class OpusFile : public AudioFile
 {

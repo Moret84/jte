@@ -2,11 +2,8 @@
 #define FLACFILE_HPP
 
 #include "AudioFile.hpp"
-#include <taglib/vorbisfile.h>
+
 #include <taglib/flacfile.h>
-#include <taglib/xiphcomment.h>
-#include <taglib/flacpicture.h>
-#include <taglib/tlist.h>
 
 class FLACFile : public AudioFile
 {

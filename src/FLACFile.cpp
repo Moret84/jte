@@ -1,9 +1,6 @@
 #include "FLACFile.hpp"
-#include <iostream>
 
-using namespace std;
-
-FLACFile::FLACFile(const string &path)
+FLACFile::FLACFile(const std::string &path)
 {
     m_internalFile = new TagLib::FLAC::File(path.c_str());
     m_file = m_internalFile;
