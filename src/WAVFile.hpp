@@ -9,11 +9,9 @@ class WAVFile : public AudioFile
 {
     public:
         WAVFile(const std::string &path);
-        void setCover(const TagLib::String &path);
 
     private:
         void clear();
-        void clearCover();
         TagLib::RIFF::WAV::File* m_internalFile;
 };
 

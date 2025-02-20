@@ -12,11 +12,9 @@ class M4AFile : public AudioFile
 {
     public:
         M4AFile(const std::string &path);
-        void setCover(const TagLib::String &path);
 
     private:
         void clear();
-        void clearCover();
         TagLib::MP4::File* m_internalFile;
 };
 

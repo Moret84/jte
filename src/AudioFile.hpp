@@ -11,6 +11,7 @@ class AudioFile
 {
     protected:
         TagLib::File* m_file;
+        void clearCover(void);
 
     public:
         virtual ~AudioFile() { delete m_file; }
@@ -20,8 +21,8 @@ class AudioFile
 
         void save() { m_file->save(); }
 
+        void setCover(const TagLib::String &s);
         virtual void clear() = 0;
-        virtual void setCover(const TagLib::String &s) = 0;
 };
 
 #endif

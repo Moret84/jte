@@ -3,6 +3,30 @@
 
 using namespace std;
 
+const TagLib::String PICTURE_KEY = "PICTURE";
+
+void AudioFile::setCover(const TagLib::String &value)
+{
+    Cover c(value.toCString());
+
+    m_file->tag()->setComplexProperties(PICTURE_KEY, {
+        {
+            { "data", c.data() },
+            { "pictureType", "Front Cover" },
+            { "mimeType", TagLib::String(c.getMimeType()) }
+        }
+    });
+}
+
+void AudioFile::clearCover()
+{
+    m_file->tag()->setComplexProperties(PICTURE_KEY, {
+        {
+        }
+    });
+
+}
+
 void AudioFile::set(const std::string &tag, const TagLib::String &value)
 {
     if(tag == "genre")
