@@ -9,6 +9,11 @@ FLACFile::FLACFile(const string &path)
     m_file = m_internalFile;
 }
 
+FLACFile::~FLACFile()
+{
+    delete m_internalFile;
+}
+
 void FLACFile::clear()
 {
     clearCover();

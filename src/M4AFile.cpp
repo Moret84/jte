@@ -17,6 +17,11 @@ M4AFile::M4AFile(const string &path)
     m_file = m_internalFile;
 }
 
+M4AFile::~M4AFile()
+{
+    delete m_internalFile;
+}
+
 void M4AFile::clear()
 {
     clearCover();

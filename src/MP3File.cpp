@@ -10,6 +10,11 @@ MP3File::MP3File(const string &path)
     m_file = m_internalFile;
 }
 
+MP3File::~MP3File()
+{
+    delete m_internalFile;
+}
+
 void MP3File::clear()
 {
     clearCover();

@@ -12,6 +12,11 @@ WAVFile::WAVFile(const std::string &path)
     m_file = m_internalFile;
 }
 
+WAVFile::~WAVFile()
+{
+    delete m_internalFile;
+}
+
 void WAVFile::clear()
 {
     clearCover();

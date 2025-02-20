@@ -12,6 +12,7 @@ class M4AFile : public AudioFile
 {
     public:
         M4AFile(const std::string &path);
+        ~M4AFile();
 
     private:
         void clear();
