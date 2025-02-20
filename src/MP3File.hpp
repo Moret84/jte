@@ -12,13 +12,9 @@ class MP3File : public AudioFile
 {
     public:
         MP3File(const std::string &path);
-        void setCover(const TagLib::String &path);
 
     private:
         void clear();
-        void clearCover();
-        void clearID3Cover();
-        void clearAPECover();
         TagLib::MPEG::File* m_internalFile;
 };
 

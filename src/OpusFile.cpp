@@ -19,29 +19,6 @@ OpusFile::~OpusFile()
     delete m_internalFile;
 }
 
-void OpusFile::clearCover()
-{
-    TagLib::Ogg::XiphComment *comment = m_internalFile->tag();
-    comment->removeAllPictures();
-}
-
-void OpusFile::setCover(const TagLib::String &path)
-{
-    if (!path.isEmpty()) {
-        Cover cover(path.toCString());
-
-        // Embedding picture into file
-        TagLib::FLAC::Picture* picture = new TagLib::FLAC::Picture;
-        picture->setData(cover.data());
-        picture->setType(TagLib::FLAC::Picture::Type::FrontCover);
-        picture->setMimeType(cover.getMimeType());
-
-        m_internalFile->tag()->addPicture(picture);
-    } else {
-        cerr << "Could not set cover: path is empty" << std::endl;
-    }
-}
-
 void OpusFile::clear()
 {
     clearCover();
