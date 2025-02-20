@@ -9,6 +9,7 @@ class WAVFile : public AudioFile
 {
     public:
         WAVFile(const std::string &path);
+        ~WAVFile();
 
     private:
         void clear();

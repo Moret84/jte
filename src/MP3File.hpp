@@ -12,6 +12,7 @@ class MP3File : public AudioFile
 {
     public:
         MP3File(const std::string &path);
+        ~MP3File();
 
     private:
         void clear();

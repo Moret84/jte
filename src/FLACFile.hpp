@@ -12,6 +12,7 @@ class FLACFile : public AudioFile
 {
     public:
         FLACFile(const std::string &path);
+        ~FLACFile();
 
     private:
         TagLib::FLAC::File* m_internalFile;
