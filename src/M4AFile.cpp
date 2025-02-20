@@ -20,4 +20,5 @@ M4AFile::M4AFile(const string &path)
 void M4AFile::clear()
 {
     clearCover();
+    m_internalFile->strip();
 }
