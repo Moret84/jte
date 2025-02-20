@@ -56,4 +56,5 @@ void M4AFile::setCover(const TagLib::String &path)
 void M4AFile::clear()
 {
     clearCover();
+    m_internalFile->strip();
 }
