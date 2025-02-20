@@ -2,7 +2,7 @@
 #define WAVFILE_HPP
 
 #include "AudioFile.hpp"
-#include <taglib/rifffile.h>
+
 #include <taglib/wavfile.h>
 
 class WAVFile : public AudioFile

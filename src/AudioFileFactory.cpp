@@ -2,12 +2,12 @@
 
 using namespace std;
 
-map<string, function<AudioFile*(string)>> AudioFileFactory::typeMap;
+map<string, function<AudioFile*(const string&)>> AudioFileFactory::typeMap;
 
 AudioFile* AudioFileFactory::create(const string &path)
 {
-    string extension = path.substr(path.find_last_of('.') + 1);
-    transform(extension.begin(), extension.end(), extension.begin(), ::tolower);
+    std::string extension = path.substr(path.find_last_of('.') + 1);
+    std::transform(extension.begin(), extension.end(), extension.begin(), ::tolower);
 
     auto it = AudioFileFactory::typeMap.find(extension);
 
@@ -17,7 +17,7 @@ AudioFile* AudioFileFactory::create(const string &path)
         throw string(path + ": Unknown file type");
 }
 
-void AudioFileFactory::Register(string key, function<AudioFile*(string)> createFunction)
+void AudioFileFactory::Register(std::string key, function<AudioFile*(const std::string&)> createFunction)
 {
     AudioFileFactory::typeMap.insert(make_pair(key, createFunction));
 }

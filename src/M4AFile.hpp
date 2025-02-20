@@ -2,11 +2,8 @@
 #define M4AFILE_HPP
 
 #include "AudioFile.hpp"
+
 #include <taglib/mp4file.h>
-#include <taglib/id3v2tag.h>
-#include <taglib/attachedpictureframe.h>
-#include <taglib/apetag.h>
-#include <string.h>
 
 class M4AFile : public AudioFile
 {

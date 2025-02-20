@@ -1,13 +1,14 @@
 #include "AudioFile.hpp"
+
 #include <iostream>
 
 using namespace std;
 
 const TagLib::String PICTURE_KEY = "PICTURE";
 
-void AudioFile::setCover(const TagLib::String &value)
+void AudioFile::setCover(const string &value)
 {
-    Cover c(value.toCString());
+    Cover c(value);
 
     m_file->tag()->setComplexProperties(PICTURE_KEY, {
         {
@@ -27,12 +28,12 @@ void AudioFile::clearCover()
 
 }
 
-void AudioFile::set(const std::string &tag, const TagLib::String &value)
+void AudioFile::set(const string &tag, const string &value)
 {
     if(tag == "genre")
         m_file->tag()->setGenre(value);
     else if(tag == "year")
-        m_file->tag()->setYear(value.toInt());
+        m_file->tag()->setYear(stoul(value));
     else if(tag == "album")
         m_file->tag()->setAlbum(value);
     else if(tag == "artist")
@@ -40,7 +41,7 @@ void AudioFile::set(const std::string &tag, const TagLib::String &value)
     else if(tag == "title")
         m_file->tag()->setTitle(value);
     else if(tag == "trackNumber")
-        m_file->tag()->setTrack(value.toInt());
+        m_file->tag()->setTrack(stoul(value));
     else if(tag == "cover")
         this->setCover(value);
 }
