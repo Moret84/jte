@@ -38,8 +38,10 @@ void JTE::parseCL(int argc, char **argv)
             year("y", "year", "Define the year tag", false, "", "year", cmd),
             album("A", "album", "Define the album tag", false, "", "album", cmd),
             artist("a", "artist", "Define the artist tag", false, "", "artist", cmd),
-            title("t", "title", "Define the title tag", false, "", "title", cmd),
-            trackNumber("n", "trackNumber", "Define the tracknumber tag", false, "", "number", cmd);
+            title("t", "title", "Define the title tag", false, "", "title", cmd);
+
+        TCLAP::ValueArg<unsigned int>
+            trackNumber("n", "trackNumber", "Define the tracknumber tag", false, 0, "number", cmd);
 
         TCLAP::SwitchArg list("l", "list", "list tag(s) instead of write them", cmd);
         TCLAP::SwitchArg clear("", "clear", "clear all tags", cmd);
@@ -86,7 +88,7 @@ void JTE::parseCL(int argc, char **argv)
             if(title.isSet())
                 m_tagList["title"] = title.getValue();
             if(trackNumber.isSet())
-                m_tagList["trackNumber"] = trackNumber.getValue();
+                m_tagList["trackNumber"] = to_string(trackNumber.getValue());
 
             if(m_tagList.empty())
                 throw TCLAP::ArgException("Nothing to do");
