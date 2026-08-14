@@ -12,7 +12,7 @@ void AudioFile::setCover(const string &value)
 {
     Cover c(value);
 
-    m_file->tag()->setComplexProperties(PICTURE_KEY, {
+    m_file->setComplexProperties(PICTURE_KEY, {
         {
             { "data", c.data() },
             { "pictureType", "Front Cover" },
@@ -23,11 +23,7 @@ void AudioFile::setCover(const string &value)
 
 void AudioFile::clearCover()
 {
-    m_file->tag()->setComplexProperties(PICTURE_KEY, {
-        {
-        }
-    });
-
+    m_file->setComplexProperties(PICTURE_KEY, {});
 }
 
 void AudioFile::set(const string &tag, const string &value)

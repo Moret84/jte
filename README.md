@@ -3,7 +3,6 @@
 jdid tag editor is a commandline application which allows you to edit your music files tags using the [taglib](https://taglib.github.io/).
 
 It supports title, artist, album, year, tracknumber, genre and front cover tags.
-Currently, front cover can only be set on FLAC and MP3 music files.
 Be aware that setting a front cover will remove all pictures that could be attached to the music files.
 See [below](#informations-and-additional-formats) for more informations.
 
@@ -62,7 +61,7 @@ To install just type:
 Taglib provides an easy-to-implement high-level API to tag music (whatever the format) with commons metadatas such as title, artist, year, etc. But there is no high-level cover feature (for know).  
 **jte** tries to help to provide it.  
 
-As of now, **jte** supports MP3, FLAC, M4A and WAV.  
-If you want to add a format to the list, you just have to extend the AudioFile class and implements the setCover method as well as clearCover(). Then, you just have to register your new format in the format map, giving the extension of the file it handles.  
+As of now, **jte** supports MP3, FLAC, M4A, WAV and Opus.
+If you want to add a format to the list, extend the AudioFile class and register the new format in the format map using the extension it handles.
 
 Pull requests in that way are welcome.
