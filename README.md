@@ -2,7 +2,7 @@
 
 jdid tag editor is a commandline application which allows you to edit your music files tags using the [taglib](https://taglib.github.io/).
 
-It supports title, artist, album, year, tracknumber, genre and front cover tags.
+It supports title, artist, album, year, tracknumber, discnumber, genre and front cover tags.
 Be aware that setting a front cover will remove all pictures that could be attached to the music files.
 See [below](#informations-and-additional-formats) for more informations.
 
@@ -28,7 +28,7 @@ $ make test
 
 ### Usage
 ```
- jte  [-n <number>] [-t <title>] [-a <artist>] [-A <album>] [-y <year>] [-g <genre>] [-c <path/to/cover>] [-h] <file(s)>
+ jte  [-n <number>] [-d <number>] [-t <title>] [-a <artist>] [-A <album>] [-y <year>] [-g <genre>] [-c <path/to/cover>] [-h] <file(s)>
  
  --clear
  clear all tags
@@ -38,6 +38,9 @@ $ make test
 
  -n <number>,  --tracknumber <number>  
  Define the tracknumber tag
+ 
+ -d <number>,  --discNumber <number>  
+ Define the discnumber tag
  
  -t <title>,  --title <title>  
  Define the title tag
