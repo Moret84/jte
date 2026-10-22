@@ -50,6 +50,7 @@ expect 1 --clear missing.flac
 expect 1 -t Title song.xyz
 expect 1 song.flac
 expect 1 -c cover.gif song.flac
+expect 1 -c missing.png song.flac
 if [ "$(id -u)" -ne 0 ]; then
     expect 1 -t Title read-only.flac
 fi
