@@ -22,10 +22,10 @@ expect() {
     fi
 }
 
-# expect_title <file> <title>
-expect_title() {
-    if ! "$JTE" -l "$1" 2> /dev/null | grep -qx "Title: $2"; then
-        echo "FAIL: $1 is not titled $2"
+# expect_listed <file> <line expected in jte -l output>
+expect_listed() {
+    if ! "$JTE" -l "$1" 2> /dev/null | grep -qxF "$2"; then
+        echo "FAIL: jte -l $1 does not list \"$2\""
         failures=$((failures + 1))
     fi
 }
@@ -33,12 +33,14 @@ expect_title() {
 cp "$FIXTURES/silence.flac" song.flac
 printf 'not really a picture' > cover.png
 
-expect 0 -t Title -n 1 -a Artist -A Album -y 2000 -g Genre song.flac
-expect_title song.flac Title
+expect 0 -t Title -n 1 -d 2 -a Artist -A Album -y 2000 -g Genre song.flac
+expect_listed song.flac "Title: Title"
+expect_listed song.flac "Disc: 2"
 expect 0 -c cover.png song.flac
 expect 0 -l song.flac
 expect 0 --clear song.flac
-expect_title song.flac ""
+expect_listed song.flac "Title: "
+expect_listed song.flac "Disc: "
 
 cp "$FIXTURES/silence.flac" read-only.flac
 chmod 444 read-only.flac
@@ -49,6 +51,7 @@ expect 1 -l missing.flac
 expect 1 --clear missing.flac
 expect 1 -t Title song.xyz
 expect 1 song.flac
+expect 1 -d two song.flac
 expect 1 -c cover.gif song.flac
 expect 1 -c missing.png song.flac
 if [ "$(id -u)" -ne 0 ]; then
@@ -56,7 +59,7 @@ if [ "$(id -u)" -ne 0 ]; then
 fi
 
 expect 1 -t Other missing.flac song.flac
-expect_title song.flac Other
+expect_listed song.flac "Title: Other"
 
 if [ "$failures" -ne 0 ]; then
     echo "$failures failure(s)"

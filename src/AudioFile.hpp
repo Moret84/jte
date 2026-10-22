@@ -24,6 +24,7 @@ class AudioFile
         bool save() { return m_file->save(); }
 
         void setCover(const std::string &s);
+        void setDiscNumber(const std::string &value);
         virtual void clear() = 0;
 };
 
