@@ -19,7 +19,9 @@ class AudioFile
         void set(const std::string &tag, const std::string &value);
         void get() const;
 
-        void save() { m_file->save(); }
+        bool isValid() const { return m_file->isValid(); }
+        TagLib::FileName name() const { return m_file->name(); }
+        bool save() { return m_file->save(); }
 
         void setCover(const std::string &s);
         virtual void clear() = 0;

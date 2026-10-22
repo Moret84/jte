@@ -29,6 +29,9 @@ mrproper:clean
 
 rebuild:mrproper all
 
+test: $(OBJDIR) $(EXEC)
+		sh tests/run.sh ./$(EXEC)
+
 install: $(OBJDIR) $(EXEC)
 ifeq ($(USER),root)
 	@mv $(EXEC) /bin/
@@ -36,4 +39,4 @@ else
 	@echo "You must be root"
 endif
 
-.PHONY: clean mrproper rebuild
+.PHONY: clean mrproper rebuild test

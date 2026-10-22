@@ -4,6 +4,9 @@ using namespace std;
 
 Cover::Cover(const string &filename) : TagLib::File(filename.c_str())
 {
+    if(!isOpen())
+        throw string(filename + ": cannot open picture");
+
     string extension = filename.substr(filename.find_last_of('.') + 1);
     transform(extension.begin(), extension.end(), extension.begin(), ::tolower);
     m_mimeType = "image/";

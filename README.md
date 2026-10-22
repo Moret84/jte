@@ -20,6 +20,11 @@ To install just type:
 # make install
 ```
 
+To run the tests:
+```
+$ make test
+```
+
 
 ### Usage
 ```
