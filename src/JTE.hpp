@@ -27,7 +27,7 @@ class JTE
         JTE(int argc, char **argv);
         ~JTE();
 
-        void run();
+        bool run();
 };
 
 #endif

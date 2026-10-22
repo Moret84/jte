@@ -40,6 +40,23 @@ expect 0 -l song.flac
 expect 0 --clear song.flac
 expect_title song.flac ""
 
+cp "$FIXTURES/silence.flac" read-only.flac
+chmod 444 read-only.flac
+printf 'not a picture either' > cover.gif
+
+expect 1 -t Title missing.flac
+expect 1 -l missing.flac
+expect 1 --clear missing.flac
+expect 1 -t Title song.xyz
+expect 1 song.flac
+expect 1 -c cover.gif song.flac
+if [ "$(id -u)" -ne 0 ]; then
+    expect 1 -t Title read-only.flac
+fi
+
+expect 1 -t Other missing.flac song.flac
+expect_title song.flac Other
+
 if [ "$failures" -ne 0 ]; then
     echo "$failures failure(s)"
     exit 1
